@@ -1,0 +1,52 @@
+
+# linea 155
+<button class="restart-button" onclick="RestartGame()">Reiniciar</button>
+
+# linea 126
+.restart-button {
+    display: none;
+    margin-top: 20px; /* Añadido margen para mover el botón hacia abajo */
+    padding: 10px 20px;
+    font-size: 20px;
+    font-family: Verdana;
+    cursor: pointer;
+}
+
+# linea 220
+var restartButton;
+
+//linea 222
+function Start() {
+    gameOver = document.querySelector(".game-over");
+    suelo = document.querySelector(".suelo");
+    contenedor = document.querySelector(".contenedor");
+    textoScore = document.querySelector(".score");
+    dino = document.querySelector(".dino");
+    restartButton = document.querySelector(".restart-button");
+    document.addEventListener("keydown", HandleKeyDown);
+}
+
+# linea 371
+function GameOver() {
+    Estrellarse();
+    gameOver.style.display = "block";
+    restartButton.style.display = "block";
+}
+
+# linea 377
+function RestartGame() {
+    parado = false;
+    score = 0;
+    gameVel = 1;
+    dinoPosY = sueloY;
+    sueloX = 0;
+    obstaculos.forEach(obstaculo => obstaculo.remove());
+    obstaculos = [];
+    nubes.forEach(nube => nube.remove());
+    nubes = [];
+    dino.classList.add("dino-corriendo");
+    dino.classList.remove("dino-estrellado");
+    textoScore.innerText = score;
+    gameOver.style.display = "none";
+    restartButton.style.display = "none";
+}
